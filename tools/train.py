@@ -18,7 +18,7 @@ from yolox.utils import configure_nccl, configure_omp, get_num_devices
 def make_parser():
     parser = argparse.ArgumentParser("YOLOX train parser")
     parser.add_argument("-expn", "--experiment-name", type=str, default=None)
-    parser.add_argument("-n", "--name", type=str, default=None, help="model name")
+    parser.add_argument("-n", "--name", type=str, default="yolox-s", help="model name")
 
     # distributed
     parser.add_argument(
@@ -30,21 +30,21 @@ def make_parser():
         type=str,
         help="url used to set up distributed training",
     )
-    parser.add_argument("-b", "--batch-size", type=int, default=64, help="batch size")
+    parser.add_argument("-b", "--batch-size", type=int, default=8, help="batch size")
     parser.add_argument(
-        "-d", "--devices", default=None, type=int, help="device for training"
+        "-d", "--devices", default=1, type=int, help="device for training"
     )
     parser.add_argument(
         "-f",
         "--exp_file",
-        default=None,
+        default="./exps/example/custom/yolox_s.py",
         type=str,
         help="plz input your experiment description file",
     )
     parser.add_argument(
         "--resume", default=False, action="store_true", help="resume training"
     )
-    parser.add_argument("-c", "--ckpt", default=None, type=str, help="checkpoint file")
+    parser.add_argument("-c", "--ckpt", default="./pre_models/yolox_x.pth", type=str, help="checkpoint file")
     parser.add_argument(
         "-e",
         "--start_epoch",
