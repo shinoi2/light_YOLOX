@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai
 RUN apt update || true
 RUN apt install -y \
         build-essential \ 
+	python3-dev \
         python3-pip \
 	python3-opencv
 RUN python3 -m pip install pip --upgrade && \
