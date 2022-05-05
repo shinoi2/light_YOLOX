@@ -1,0 +1,37 @@
+name: docker-build
+
+on:
+  watch:
+    types: [started]
+
+jobs:
+  docker:
+    runs-on: ubuntu-18.04
+    if: github.actor == github.event.repository.owner.login
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      -
+        name: Download model file
+        run: wget https://github.com/shinoi2/light_YOLOX/releases/download/docker-build-20220505/light.onnx
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pji-research:http_api_service
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/pji-research:http_api_service
+          cache-to: type=inline
