@@ -7,11 +7,12 @@ RUN apt install -y \
         build-essential \ 
         python3-pip \
 	python3-opencv
-RUN pip3 install \
+RUN python3 -m pip install pip --upgrade && \
+    pip install \
         grpcio \
         protobuf \
         torch>=1.7
-RUN pip3 install yolox
+RUN pip install yolox
 
 COPY . /workspace/
 
