@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package LightDetection;
+
+option cc_generic_services = true;
+
+service LightService {
+    rpc predict (LightRequest) returns (LightResponse) {}
+}
+
+message LightRequest {
+    repeated bytes images = 1;
+};
+
+message Rect {
+    float left = 1;
+    float right = 2;
+    float top = 3;
+    float bottom = 4;
+}
+
+message Light {
+    float score = 1;
+    Rect rect = 2;
+}
+
+message Lights {
+    repeated Light lights = 1;
+}
+
+message LightResponse {
+    repeated Lights responses = 1;
+};
