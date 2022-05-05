@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/azureml/onnxruntime:latest-cuda
 
 ENV DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai
 
+RUN apt update || true
 RUN apt install -y \
         build-essential \ 
         python3-pip \
