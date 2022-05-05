@@ -14,9 +14,9 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
-      -
-        name: Download model file
-        run: wget https://github.com/shinoi2/light_YOLOX/releases/download/docker-build-20220505/light.onnx
+#       -
+#         name: Download model file
+#         run: wget https://github.com/shinoi2/light_YOLOX/releases/download/docker-build-20220505/light.onnx
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
