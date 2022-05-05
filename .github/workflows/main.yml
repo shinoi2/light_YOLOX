@@ -32,6 +32,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pji-research:http_api_service
-          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/pji-research:http_api_service
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/pji-research:light
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/pji-research:light
           cache-to: type=inline
