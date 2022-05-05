@@ -10,9 +10,8 @@ RUN apt install -y \
 RUN pip3 install \
         grpcio \
         protobuf \
-        torch>=1.7 \
-    -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip3 install yolox -i https://pypi.tuna.tsinghua.edu.cn/simple
+        torch>=1.7
+RUN pip3 install yolox
 
 COPY . /workspace/
 
