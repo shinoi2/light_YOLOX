@@ -35,3 +35,19 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/pji-research:light
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/pji-research:light
           cache-to: type=inline
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          registry: registry.cn-hangzhou.aliyuncs.com
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          password: ${{ secrets.ALIYUN_PASSWORD }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: registry.cn-hangzhou.aliyuncs.com/pji-research/pji-research:light
+          cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/pji-research:light
+          cache-to: type=inline
