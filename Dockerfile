@@ -12,9 +12,20 @@ RUN python3 -m pip install pip --upgrade && \
     pip install \
         grpcio \
         protobuf \
-        torch>=1.7
-# RUN pip install yolox
+        numpy \
+        torch>=1.7 \
+        opencv_python \
+        loguru \
+        scikit-image \
+        tqdm \
+        torchvision \
+        Pillow \
+        thop \
+        ninja \
+        tabulate \
+        tensorboard \
+        pycocotools>=2.0.2
 
-# COPY . /workspace/
+COPY . /workspace/
 
-# ENTRYPOINT cd /workspace && python3 light_service.py
+ENTRYPOINT cd /workspace && python3 light_service.py
