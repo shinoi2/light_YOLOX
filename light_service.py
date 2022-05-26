@@ -5,6 +5,7 @@ import light_pb2_grpc
 import light_pb2
 import numpy as np
 import onnxruntime
+import multiprocessing
 import cv2
 from yolox.data.data_augment import preproc as preprocess
 from yolox.utils import multiclass_nms, demo_postprocess
@@ -64,7 +65,8 @@ class Service(light_pb2_grpc.LightServiceServicer):
         
 
 def run():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=multiprocessing.cpu_count()*5))
+    print(multiprocessing.cpu_count())
     light_pb2_grpc.add_LightServiceServicer_to_server(Service(), server)
     server.add_insecure_port('[::]:50052')
     server.start()
